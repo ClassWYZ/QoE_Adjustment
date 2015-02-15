@@ -1,0 +1,2 @@
+  TCP    192.168.0.5:49815      223.240.100.221:2245   ESTABLISHED
+ [thunderplatform.exe]

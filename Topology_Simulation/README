@@ -1,0 +1,31 @@
+We include several file in this package:
+
+	* fatTree.py: 
+
+		- Construct the Fat-Tree Network Topology, default with half_ports = 2, i.e. 2 aggregated switches, 2 * 2 ToR switches, and 2 * 2 * 2 hosts
+	   !- Wrote 2 Json file to CURRENT DIRECTORY to store network topology: 
+			"detail.json" to store nodes detailed information, like ip, mac and active interface sets
+			"connections.json" to store interfaces connection, we use it to store the network 
+		- Invoked by "sudo python fattree.py"
+
+
+	* Hw1Switch.java
+
+		- Like what we did in Hw1, for basic packet process procedure, mainly contains function like receive, writePacketOutForPacketIn, processPacketInMessage etc.
+		- Call Topology.java when do the route choosing
+
+	* Topology.java
+
+		- Read 2 Json file we store from fattree.py, store the knowledge about network and precalculate routes
+		- Provide information Hw1Switch.java asks for
+	   !- Wrote down the path to where you store the fatTree.py, MODIFY the path in Topology.java, i.e. variable filePath1 and filePath2 to locate your local json file
+
+	* json-simple-1.1.1.jar
+		- Json library we need to import into floodlight lib
+
+Attention:
+
+We need to read Json file when running the floodlight, so we need to enrich floodlight library and add path. Here is what you need to do in order to smoothly run the floodlight controller:
+	1. copy and paste 'json-simple-1.1.1.jar' into 'SDN_hw1/lib'
+	2. open 'floodlight.sh', add statement 'FL_JSON_JAR="${FL_HOME}/lib/json-simple-1.1.1.jar' after 'FL_JAR' at line 5
+	        				 add ':${FL_JSON_JAR}' at line 19 at the end of the statement 'JVM_OPTS="$JVM_OPTS -cp'
